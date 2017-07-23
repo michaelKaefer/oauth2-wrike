@@ -15,3 +15,4 @@ composer require michaelkaefer/oauth2-wrike
 ## Usage
 
 Usage is the same as The League's OAuth client, using `MichaelKaefer\OAuth2\Client\Provider\Wrike` as the provider.
+ 
