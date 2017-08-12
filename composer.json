@@ -9,12 +9,14 @@
         }
     ],
     "keywords": [
+        "php",
+        "wrike",
+        "api",
         "oauth",
         "oauth2",
         "client",
         "authorization",
-        "authentication",
-        "wrike"
+        "authentication"
     ],
     "require": {
         "league/oauth2-client": "^2.0"
