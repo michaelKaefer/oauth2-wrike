@@ -43,8 +43,8 @@ class WrikeResourceOwner implements ResourceOwnerInterface
      */
     public function getName()
     {
-        $firstName = $this->getValueByKey($this->response, 'data.0.firstName');
-        $lastName = $this->getValueByKey($this->response, 'data.0.lastName');
+        $firstName = $this->getValueByKey($this->response, 'data.0.firstName') ?: '';
+        $lastName = $this->getValueByKey($this->response, 'data.0.lastName') ?: '';
         return $firstName . ($firstName && $lastName ? ' ' : '') . $lastName;
     }
 
