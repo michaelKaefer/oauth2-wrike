@@ -3,9 +3,12 @@
 namespace MichaelKaefer\OAuth2\Client\Provider;
 
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
+use League\OAuth2\Client\Tool\ArrayAccessorTrait;
 
 class WrikeResourceOwner implements ResourceOwnerInterface
 {
+    use ArrayAccessorTrait;
+    
     /**
      * Raw response
      *
@@ -30,7 +33,7 @@ class WrikeResourceOwner implements ResourceOwnerInterface
      */
     public function getId()
     {
-        return $this->response['data'][0]['id'] ?: null;
+        return $this->getValueByKey($this->response, 'data.0.id');
     }
 
     /**
@@ -40,11 +43,9 @@ class WrikeResourceOwner implements ResourceOwnerInterface
      */
     public function getName()
     {
-        if( isset($this->response['data'][0]['firstName']) && isset($this->response['data'][0]['lastName']) ) {
-            return $this->response['data'][0]['firstName'] . ' ' . $this->response['data'][0]['lastName'];
-        }
-        
-        return '';
+        $firstName = $this->getValueByKey($this->response, 'data.0.firstName');
+        $lastName = $this->getValueByKey($this->response, 'data.0.lastName');
+        return $firstName . ($firstName && $lastName ? ' ' : '') . $lastName;
     }
 
     /**
