@@ -65,5 +65,6 @@ if (!isset($_GET['code'])) {
         exit($e->getMessage());
     }
 }
+```
 
 For more information see the PHP League's general usage examples.
