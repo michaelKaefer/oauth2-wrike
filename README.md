@@ -35,36 +35,53 @@ if (!isset($_GET['code'])) {
     }
     exit('Invalid state');
 } else {
+    // Get access token
     try {
-        // Get access token
-        $accessToken = $wrikeProvider->getAccessToken('authorization_code', [
-            'code' => $_GET['code']
-        ]);
-
-        // Get resource owner
-        $resourceOwner = $wrike->getResourceOwner($accessToken);
-        
-        // Output results ...
-        var_dump($resourceOwner);
-        var_dump($accessToken);
-        
-        // ... or store them to session ...
-        $_SESSION['accessToken'] = $accessToken;
-        $_SESSION['resourceOwner'] = $resourceOwner;
-        
-        // ... or do some API request
-        $folderId = 'yourFolderId';
-        $request = $wrikeProvider->getAuthenticatedRequest(
-            'GET',
-            'https://www.wrike.com/api/v3/folders/' . $folderId . '/folders',
-            $accessToken
+        $accessToken = $wrikeProvider->getAccessToken(
+            'authorization_code',
+            [
+                'code' => $_GET['code']
+            ]
         );
-        $response = $wrikeProvider->getParsedResponse($request);
-        var_dump($response['data']);
     } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
         exit($e->getMessage());
     }
+
+    // Get resource owner
+    try {
+        $resourceOwner = $wrike->getResourceOwner($accessToken);
+    } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
+        exit($e->getMessage());
+    }
+        
+    // Now you can store the results to session ...
+    $_SESSION['accessToken'] = $accessToken;
+    $_SESSION['resourceOwner'] = $resourceOwner;
+        
+    // ... or do some API request
+    $folderId = 'yourFolderId';
+    $request = $wrikeProvider->getAuthenticatedRequest(
+        'GET',
+        'https://www.wrike.com/api/v3/folders/' . $folderId . '/folders',
+        $accessToken
+    );
+    try {
+        $response = $wrikeProvider->getParsedResponse($request);
+    } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
+        exit($e->getMessage());
+    }
+    var_dump($response['data']);
 }
 ```
 
 For more information see the PHP League's general usage examples.
+
+## Testing
+
+``` bash
+$ ./vendor/bin/phpunit
+```
+
+## License
+
+The MIT License (MIT). Please see [License File](https://github.com/michaelKaefer/oauth2-wrike/blob/master/LICENSE) for more information.

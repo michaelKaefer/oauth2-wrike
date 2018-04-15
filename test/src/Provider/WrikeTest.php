@@ -62,7 +62,7 @@ class WrikeTest extends \PHPUnit_Framework_TestCase
         $this->provider->setHttpClient($client);
         
         $token = $this->provider->getAccessToken('authorization_code', ['code' => 'mock_authorization_code']);
-        var_dump($token);
+
         $this->assertEquals('mock_access_token', $token->getToken());
         $this->assertEquals('mock_refresh_token', $token->getRefreshToken());
         $this->assertLessThanOrEqual(time() + 3600, $token->getExpires());

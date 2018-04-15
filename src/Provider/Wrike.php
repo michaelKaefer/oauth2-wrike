@@ -7,6 +7,8 @@ use Psr\Http\Message\ResponseInterface;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
+use Psr\Http\Message\RequestInterface;
 
 class Wrike extends AbstractProvider
 {
@@ -77,7 +79,7 @@ class Wrike extends AbstractProvider
      * @param array $response
      * @param AccessToken $token
      *
-     * @return League\OAuth2\Client\Provider\ResourceOwnerInterface
+     * @return ResourceOwnerInterface
      */
     protected function createResourceOwner(array $response, AccessToken $token)
     {
@@ -89,7 +91,7 @@ class Wrike extends AbstractProvider
      *
      * @param array $params
      * 
-     * @return Psr\Http\Message\RequestInterface
+     * @return RequestInterface
      */
     protected function getAccessTokenRequest(array $params)
     {
