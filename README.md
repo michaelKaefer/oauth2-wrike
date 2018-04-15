@@ -49,7 +49,7 @@ if (!isset($_GET['code'])) {
 
     // Get resource owner
     try {
-        $resourceOwner = $wrike->getResourceOwner($accessToken);
+        $resourceOwner = $wrikeProvider->getResourceOwner($accessToken);
     } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
         exit($e->getMessage());
     }
