@@ -8,7 +8,6 @@ use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
-use Psr\Http\Message\RequestInterface;
 
 class Wrike extends AbstractProvider
 {
