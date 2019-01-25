@@ -68,7 +68,12 @@ class Wrike extends AbstractProvider
     protected function checkResponse(ResponseInterface $response, $data)
     {
         if (isset($data['error'])) {
-            throw new IdentityProviderException($data['error_description'], $response->getStatusCode(), $response);
+            if (isset($data['error_description'])) {
+                $message = $data['error_description'];
+            } else {
+                $message = $data['errorDescription'];
+            }
+            throw new IdentityProviderException($message, $response->getStatusCode(), $response);
         }
     }
     
