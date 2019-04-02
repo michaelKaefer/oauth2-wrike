@@ -20,7 +20,7 @@ class Wrike extends AbstractProvider
      */
     public function getBaseAuthorizationUrl()
     {
-        return 'https://www.wrike.com/oauth2/authorize';
+        return 'https://www.wrike.com/oauth2/authorize/v4';
     }
     
     /**
@@ -44,7 +44,7 @@ class Wrike extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return 'https://www.wrike.com/api/v3/contacts?me=true';
+        return 'https://www.wrike.com/api/v4/contacts?me=true';
     }
     
     /**
