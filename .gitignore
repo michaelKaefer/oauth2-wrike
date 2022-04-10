@@ -1,5 +1,4 @@
-/vendor
-composer.phar
+vendor
+.idea
 composer.lock
-.DS_Store
-/.idea
+.phpunit.result.cache

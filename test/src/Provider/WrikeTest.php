@@ -4,12 +4,13 @@ namespace MichaelKaefer\OAuth2\Client\Test\Provider;
 
 use MichaelKaefer\OAuth2\Client\Provider\Wrike;
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
-class WrikeTest extends \PHPUnit_Framework_TestCase
+class WrikeTest extends TestCase
 {
     protected $provider;
-    
-    protected function setUp()
+
+    protected function setUp(): void
     {
         $this->provider = new Wrike([
             'clientId' => 'mock_client_id',
@@ -44,7 +45,7 @@ class WrikeTest extends \PHPUnit_Framework_TestCase
         $url = $this->provider->getAuthorizationUrl();
         $uri = parse_url($url);
         
-        $this->assertEquals('/oauth2/authorize', $uri['path']);
+        $this->assertEquals('/oauth2/authorize/v4', $uri['path']);
     }
     
     public function testGetAccessToken()
