@@ -2,7 +2,7 @@
 
 This package provides Wrike OAuth 2.0 support for the PHP League's [OAuth 2.0 Client](https://github.com/thephpleague/oauth2-client).
 
-IMPORTANT NOTE: the versions 2.x support the v4 API, prior versions the v3 API
+> **_NOTE:_**  since 2.x only Wrike's v4 API is supported (prior versions support Wrike's v3 API)
 
 ## Installation
 
